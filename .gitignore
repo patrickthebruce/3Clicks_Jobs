@@ -1,0 +1,19 @@
+#node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Expo
+.expo
+__generated__
+web-build
+
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+#vscode
+.vscode
+
