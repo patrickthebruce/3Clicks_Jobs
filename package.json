@@ -9,7 +9,7 @@
     "deploy": "gh-pages -d web-build",
     "predeploy": "expo build:web"
   },
-  "homepage": "http://patrickthebruce.github.io/3Clicks_Jobs/",
+  "homepage": "http://patrickthebruce.github.io/",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@parse/react-native": "^0.0.1-alpha.15",
