@@ -9,11 +9,11 @@ import { Provider as PaperProvider } from 'react-native-paper';
 
 export default function Routes() {
   return (
-    // <PaperProvider>
+    <PaperProvider>
       <AuthenticatedUserProvider>
           <RootNavigator />
       </AuthenticatedUserProvider>
-    // </PaperProvider>
+    </PaperProvider>
     
   );
 }

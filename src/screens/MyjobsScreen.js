@@ -122,7 +122,7 @@ return url
           <TouchableOpacity>
             <Card.Actions>
 
-            <Button onPress={onMapLinkPress}> Directions </Button>
+            <Button onPress={onMapLinkPress}> <Text style={{color:"#788eec"}}>Directions </Text></Button>
 
             </Card.Actions>
           </TouchableOpacity>

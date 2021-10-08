@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
-import {ActivityIndicator, TouchableOpacity, View, Platform, Alert} from 'react-native'
+import {ActivityIndicator, TouchableOpacity, View, Platform, Alert, } from 'react-native'
 import { SafeAreaView } from 'react-native';
-import { Button, Card, Divider, Paragraph, Subheading, Caption, Headline, Text } from 'react-native-paper';
+import { Button, Card, Divider, Paragraph, Subheading, Caption, Headline, Text, Portal } from 'react-native-paper';
 import moment, { ISO_8601 } from 'moment';
 import { FlatGrid } from 'react-native-super-grid'
 import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
@@ -42,6 +42,12 @@ const [jobs, setJobs] = useState([])
 
 const { user } = useContext(AuthenticatedUserContext);
 
+const [visible, setVisible] = useState(false)
+
+const showModal = () => setVisible(true);
+
+const hideModal = () => setVisible(false);
+
 const parseQuery = new Parse.Query('jobs');
 
 parseQuery.equalTo('assignedUser', null)
@@ -58,6 +64,42 @@ parseQuery.addAscending('installDate');
 
 if (isLoading) {
   return <ActivityIndicator/>;
+}
+
+const onClaimPress = async function (id){
+  // alert(id)
+ 
+ let jobsclass = Parse.Object.extend('jobs')
+ let query = new Parse.Query(jobsclass)
+ let job = await query.get(id)
+ job.set('assignedUser', Parse.User.current())
+ job.set('user', Parse.User.current().get('email'))
+ job.set('userName', Parse.User.current().get('fullname'))
+ job.save()
+ reload()
+}
+
+
+const verifyClaim  = (id ) => {
+
+  return (
+
+
+
+    Alert.alert(
+      "Are you sure you want to claim this job?",
+      "This cannot be reversed without contacting Mike or Patrick",
+      [
+        {
+          text: "Cancel",
+          onPress:()=>close(),
+          style: "cancel"
+        },
+        { text: "OK", onPress: ()=>onClaimPress(id) }
+      ]
+    )
+  )
+  
 }
 
 
@@ -101,7 +143,7 @@ if (isLoading) {
           <TouchableOpacity>
             <Card.Actions >
 
-            <Button  onPress={()=>onClaimPress(item.id)}>Claim Job  -  ${item.get('installPay')} Payout </Button>
+            <Button  onPress={()=>onClaimPress(item.id)}>  <Text style={{color:"#788eec", fontWeight: "bold" }}>Claim Job  -  ${item.get('installPay')} Payout </Text></Button>
 
             </Card.Actions>
           </TouchableOpacity>
