@@ -112,5 +112,21 @@ export default StyleSheet.create({
         color: "#788eec",
         fontWeight: "bold",
         fontSize: 16
-    }
+    },
+    welcomeText: {
+        fontSize: 20,
+        margin: 10,
+        textAlign: "center",
+    },
+    exampleText: {
+        fontSize: 20,
+        marginBottom: 25,
+        textAlign: "center",
+    },
+    instructionsText: {
+        color: "#333333",
+        fontSize: 16,
+        marginBottom: 40,
+        textAlign: "center",
+    },
 })

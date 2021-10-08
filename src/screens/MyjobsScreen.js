@@ -49,7 +49,8 @@ const { user } = useContext(AuthenticatedUserContext);
 
 
 const parseQuery = new Parse.Query('jobs');
-parseQuery.equalTo('user', Parse.User.current().get('email'))
+// alert(Parse.User.current().get('email'))
+parseQuery.contains('user', Parse.User.current().get('email'))
 parseQuery.addAscending('installDate')
  const {
   isLive,
@@ -67,7 +68,7 @@ if (isLoading) {
 
 const renderStaticMap  = (point ) => {
   const url = staticMapUrl({
-    key: 'AIzaSyAJZ6jkBjZmgJMyQUDYy1o7vUrS7k5iMTY',
+    key: 'AIzaSyAunVXgYpVQal-3k5X5S5Ed4t4JlYHErsE',
     scale: 1,
     size: '500x500',
     format: 'png',

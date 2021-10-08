@@ -6,7 +6,7 @@ import moment, { ISO_8601 } from 'moment';
 import { FlatGrid } from 'react-native-super-grid'
 import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
 import styles from './styles'
-
+import {Picker} from '@react-native-picker/picker'
 import Parse from "parse/react-native.js"
 import { initializeParse,useParseQuery } from  '@parse/react-native';
 import { staticMapUrl } from 'static-google-map'
@@ -44,13 +44,15 @@ const { user } = useContext(AuthenticatedUserContext);
 
 const [visible, setVisible] = useState(false)
 
-const showModal = () => setVisible(true);
+const showDialog = () => setVisible(true);
 
-const hideModal = () => setVisible(false);
+const hideDialog = () => setVisible(false);
+
+
 
 const parseQuery = new Parse.Query('jobs');
 
-parseQuery.equalTo('assignedUser', null)
+parseQuery.equalTo('user', null)
 parseQuery.addAscending('installDate');
  const {
   isLive,
@@ -80,25 +82,14 @@ const onClaimPress = async function (id){
 }
 
 
-const verifyClaim  = (id ) => {
-
-  return (
+const onConfirmPress  = (id ) => {
 
 
 
-    Alert.alert(
-      "Are you sure you want to claim this job?",
-      "This cannot be reversed without contacting Mike or Patrick",
-      [
-        {
-          text: "Cancel",
-          onPress:()=>close(),
-          style: "cancel"
-        },
-        { text: "OK", onPress: ()=>onClaimPress(id) }
-      ]
-    )
-  )
+  if (confirm("Are you sure you want to claim this job? This action cannot be reversed without calling 3Clicks Corporate")) {
+    onClaimPress(id)
+  } 
+
   
 }
 
@@ -106,7 +97,7 @@ const verifyClaim  = (id ) => {
 
   const renderStaticMap  = (point ) => {
     const url = staticMapUrl({
-      key: 'AIzaSyAJZ6jkBjZmgJMyQUDYy1o7vUrS7k5iMTY',
+      key: 'AIzaSyAunVXgYpVQal-3k5X5S5Ed4t4JlYHErsE',
       scale: 1,
       size: '500x500',
       format: 'png',
@@ -143,7 +134,7 @@ const verifyClaim  = (id ) => {
           <TouchableOpacity>
             <Card.Actions >
 
-            <Button  onPress={()=>onClaimPress(item.id)}>  <Text style={{color:"#788eec", fontWeight: "bold" }}>Claim Job  -  ${item.get('installPay')} Payout </Text></Button>
+            <Button  onPress={()=>onConfirmPress(item.id)}>  <Text style={{color:"#788eec", fontWeight: "bold" }}>Claim Job  -  ${item.get('installPay')} Payout </Text></Button>
 
             </Card.Actions>
           </TouchableOpacity>
