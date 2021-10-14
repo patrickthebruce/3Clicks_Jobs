@@ -50,7 +50,7 @@ const { user } = useContext(AuthenticatedUserContext);
 
 const parseQuery = new Parse.Query('jobs');
 // alert(Parse.User.current().get('email'))
-parseQuery.contains('user', Parse.User.current().get('email'))
+parseQuery.contains('userName', Parse.User.current().get('fullname'))
 parseQuery.addAscending('installDate')
  const {
   isLive,
