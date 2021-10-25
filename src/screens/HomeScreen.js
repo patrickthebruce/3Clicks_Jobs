@@ -36,19 +36,7 @@ let formatPhoneNumber = (str) => {
 
 export default function HomeScreen() {
  
-
-const [jobs, setJobs] = useState([])
-
-
 const { user } = useContext(AuthenticatedUserContext);
-
-const [visible, setVisible] = useState(false)
-
-const showDialog = () => setVisible(true);
-
-const hideDialog = () => setVisible(false);
-
-
 
 const parseQuery = new Parse.Query('jobs');
 
@@ -130,16 +118,12 @@ const onConfirmPress  = (id ) => {
             <Text>{"\n"}</Text>
           </Card.Content>
           <Card.Cover source={{uri:renderStaticMap(item.get('location'))}} />
-       
           <TouchableOpacity>
             <Card.Actions >
-
             <Button  onPress={()=>onConfirmPress(item.id)}>  <Text style={{color:"#788eec", fontWeight: "bold" }}>Claim Job  -  ${item.get('installPay')} Payout </Text></Button>
-
             </Card.Actions>
           </TouchableOpacity>
         </Card>
-        
     </View>
     )
     }
