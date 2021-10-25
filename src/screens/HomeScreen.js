@@ -149,6 +149,7 @@ const onConfirmPress  = (id ) => {
     return (
        <SafeAreaView style={{backgroundColor:'#efefef'}} >
           <View> 
+          {results.length <=0 ?(<View style={styles.container} > <Headline style={styles.textContainer}>No Open Jobs</Headline> </View>):
           <FlatGrid
           contentContainerStyle={styles.flatGrid}
             maxDimension={1100}
@@ -156,7 +157,7 @@ const onConfirmPress  = (id ) => {
             data={results}
             extraData={results}
             renderItem= {renderCard}            
-          />
+          />}
           </View>
         </SafeAreaView>
       )

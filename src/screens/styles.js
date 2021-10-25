@@ -11,6 +11,11 @@ export default StyleSheet.create({
         marginRight: 30,
         paddingLeft: 16
     },
+     textContainer: {
+    
+        
+        color: "#788eec"
+    },
     authContainer: {
         flex: 1,
         alignItems: 'center',
