@@ -94,6 +94,7 @@ return url
     // alert(point.latitude)
     const map =  Platform.select({ ios: 'maps:', android: 'geo:' });
     const locationURL= map+point.latitude+","+point.longitude
+    const installDate = item.get('installDate')
     
 
     const onMapLinkPress = () => {
@@ -111,7 +112,7 @@ return url
       <Card >
       <Card.Content>
           <Card.Title title={item.get('name')} subtitle={item.get('address') }/>
-            <Paragraph style={styles.footerLink}>Install Date: {moment(item.get('installDate')).format("MM/DD/YY")} </Paragraph>
+            <Paragraph style={styles.footerLink}>Install Date: {moment.utc(installDate).format("MM/DD/YY")}  </Paragraph>
             <Caption style={styles.footerLink} >Color Chosen: {item.get('colorChoice')}</Caption> 
             <Text style={styles.footerLink} onPress={() => Linking.openURL(`sms:${item.get('phone')}`)}>Phone: {formatPhoneNumber(item.get('phone'))} </Text>
             {item.get('assignedUser')!=null ? <Caption>Assigned User: {item.get('userName')}</Caption>  : <Text style={styles.greenText}>OPEN JOB</Text>}
