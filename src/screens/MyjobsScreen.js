@@ -124,7 +124,7 @@ return url
           source={{uri:renderStaticMap(item.get('location'))}} 
           />
           </TouchableOpacity>
-          <Card.Content>Notes: <Text>{item.get('notes')}</Text></Card.Content>
+          <Card.Content style={styles.greenText} >Notes: {item.get('notes')}</Card.Content>
           <Card.Content>
           {item.get('image')!=null ? 
           <><Text>Diagram: </Text><Image 
