@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import {ActivityIndicator, TouchableOpacity, View, Platform, Alert, Linking} from 'react-native'
+import {ActivityIndicator, TouchableOpacity, View, Platform, Alert, Linking, Image} from 'react-native'
 // import getFirebase  from '../firebase/config'
 import { SafeAreaView } from 'react-native';
 import { Button, Card, Divider, Paragraph, Subheading, Caption, Headline, Text } from 'react-native-paper';
@@ -109,6 +109,13 @@ return url
     
   return(
   <View>  
+    {item.get('image')!=null ? 
+          <><Text>Diagram: </Text><Image 
+          sytle={{ width: 100, height: 100 }}
+          source={ { uri: item.get('image').url() } } />
+          {console.log(item.get('image').url())}</>
+        :
+        <Text>No Diagram</Text>}
       <Card >
       <Card.Content>
           <Card.Title title={item.get('name')} subtitle={item.get('address') }/>
@@ -119,9 +126,24 @@ return url
             <Text>{"\n"}</Text>
           </Card.Content>
           <TouchableOpacity onPress={onMapLinkPress}>
-          <Card.Cover  source={{uri:renderStaticMap(item.get('location'))}} />
+          <Card.Cover  
+          
+          source={{uri:renderStaticMap(item.get('location'))}} 
+          />
           </TouchableOpacity>
+          <Card.Content>Notes: {item.get('notes')}</Card.Content>
+          <Card.Content>
+          {item.get('image')!=null ? 
+          <><Text>Diagram: </Text><Image 
+          // sytle={{ width: 100, height: 100 }}
+          source={ { uri: item.get('image').url() } } />
+          {console.log(item.get('image').url())}</>
+        :
+        <Text>No Diagram</Text>}
+        
+            </Card.Content>
           <TouchableOpacity>
+           
             <Card.Actions>
 
             <Button onPress={onMapLinkPress}> <Text style={{color:"#788eec"}}>Directions </Text></Button>
