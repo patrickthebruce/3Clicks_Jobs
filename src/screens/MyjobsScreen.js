@@ -50,7 +50,7 @@ const { user } = useContext(AuthenticatedUserContext);
 
 const parseQuery = new Parse.Query('jobs');
 // alert(Parse.User.current().get('email'))
-parseQuery.contains('userName', Parse.User.current().get('fullname'))
+Parse.User.current().id!='uqIWUZaotn'? parseQuery.contains('userName', Parse.User.current().get('fullname')):console.log('not admin')
 parseQuery.addAscending('installDate')
  const {
   isLive,
@@ -108,14 +108,7 @@ return url
     }
     
   return(
-  <View>  
-    {item.get('image')!=null ? 
-          <><Text>Diagram: </Text><Image 
-          sytle={{ width: 100, height: 100 }}
-          source={ { uri: item.get('image').url() } } />
-          {console.log(item.get('image').url())}</>
-        :
-        <Text>No Diagram</Text>}
+  <View>
       <Card >
       <Card.Content>
           <Card.Title title={item.get('name')} subtitle={item.get('address') }/>
