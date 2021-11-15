@@ -139,8 +139,8 @@ return url
            
             <Card.Actions>
 
-            <Button onPress={onMapLinkPress}> <Text style={{color:"#788eec"}}>Directions </Text></Button>
-
+            <Button onPress={onMapLinkPress}> <Text style={{color:"#788eec"}}>Directions </Text><Text style={{color:"#788eec", fontWeight: "bold" }}>${item.get('installPay')} Payout </Text></Button>
+            
             </Card.Actions>
           </TouchableOpacity>
         </Card>
